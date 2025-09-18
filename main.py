@@ -17,10 +17,10 @@ def main():
 		sleep(5)
 		r = requests.post(URL, data=payload)
 
-		if r.ok:  # True if status_code is 200–399
-    			print("Submitted successfully!", r.status_code)
+		if r.ok:
+    		print("Submitted successfully!", r.status_code)
 		else:
-    			print("Failed:", r.status_code)
+    		print("Failed:", r.status_code)
 
 def work():
 	num_threads = 20
