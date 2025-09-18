@@ -38,3 +38,7 @@ def new_payload():
 # '__other_option__'],
 # 'entry.2011057818.other_option_response': 'et',
 # 'entry.1913878908': 5}
+
+
+if __name__ == "__main__":
+    print(new_payload())
