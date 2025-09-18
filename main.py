@@ -1,3 +1,4 @@
+import threading
 from concurrent.futures import ThreadPoolExecutor
 import requests
 from time import sleep
@@ -20,22 +21,29 @@ URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSefeUcLXD-gKFTxeuzJsbirEnQT-
 payload = new_payload()
 
 
-def main():
-    for _ in range(1):
-        #sleep(5)
-        r = requests.post(URL, data=payload)
+lock = threading.Lock()
+counter = 0
 
+def main():
+    global counter
+    while True:
+        sleep(0.2)
+        r = requests.post(URL, data=payload)
         if r.ok:
+            with lock:
+                counter += 1
             print("Submitted successfully!", r.status_code)
+            print(counter, "submissions finished")
         else:
             print("Failed:", r.status_code)
 
-def work():
-    num_threads = 1
 
+def work():
+    num_threads = 20
     with ThreadPoolExecutor(max_workers=num_threads) as executor:
         for i in range(num_threads):
             executor.submit(main)
+
 
 if __name__ == "__main__":
     work()
