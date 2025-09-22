@@ -16,7 +16,7 @@ from data_gen import new_payload
 #     "entry.1010018223": "Option 3",
 # }
 
-URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSefeUcLXD-gKFTxeuzJsbirEnQT-TrIvAcRyGYjnlDC23jLBQ/formResponse?pli=1"
+URL = ""
 
 payload = new_payload()
 
